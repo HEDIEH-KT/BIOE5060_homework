@@ -1,0 +1,6 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: prime
+Source: https://github.com/darrenjw/code-examples
+Files: *
+Copyright: 2024 Hedieh Karimitar <Hedieh_k@yahoo.com>
+License: GPL-3+
