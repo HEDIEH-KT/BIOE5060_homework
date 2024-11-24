@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "laplace2d_func.h"
 
 // Function to parse command-line arguments
@@ -27,6 +28,11 @@ void init_domain(grid *grid2d) {
             grid2d->field[1][i][j] = 0.0;
         }
     }
+
+    for (j = 0; j < grid2d->Ny; j++) {
+        grid2d->field[0][0][j] = 1.0;
+        grid2d->field[1][0][j] = 1.0;
+    }
 }
 
 // Function to update the domain (solve Laplace equation iteratively)
@@ -41,13 +47,13 @@ void update_domain(grid *grid2d) {
                 double old_val = grid2d->field[iter % 2][i][j];
                 double new_val = (grid2d->field[iter % 2][i+1][j] + grid2d->field[iter % 2][i-1][j] +
                                   grid2d->field[iter % 2][i][j+1] + grid2d->field[iter % 2][i][j-1]) / 4.0;
-                grid2d->field[(iter + 1) % 2][i][j] = old_val + grid2d->omega * (new_val - old_val);
+                grid2d->field[(iter + 1) % 2][i][j] = (1.0 - grid2d->omega) * grid2d->field[(iter + 1) % 2][i][j] + grid2d->omega * new_val;
                 diff = fabs(grid2d->field[(iter + 1) % 2][i][j] - old_val);
                 if (diff > max_diff) max_diff = diff;
             }
         }
         iter++;
-        if (iter % 1000 == 0) {
+        if (iter % 2 == 0) {
             printf("Iteration %d, max difference: %f\n", iter, max_diff);
         }
     } while (max_diff > grid2d->tol);

@@ -1,4 +1,4 @@
-fizzbuzz:
+fizzbuzz: fizzbuzz.c
 	gcc fizzbuzz.c -o fizzbuzz
 
 fizzbuzz.txt: fizzbuzz
