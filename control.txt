@@ -1,0 +1,12 @@
+Source: prime
+Section: utils
+Priority: optional
+Maintainer: Hedieh Karimitar <Hedieh_k@yahoo.com>
+Build-Depends: debhelper (>= 12), gcc
+Standards-Version: 4.5.0
+Homepage: https://github.com/darrenjw/code-examples
+Package: prime
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A simple tool to check if a number is prime
+ This package provides a command-line tool to check if a given number is prime. It uses trial division for determining primality.

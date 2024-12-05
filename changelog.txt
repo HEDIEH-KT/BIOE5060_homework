@@ -1,0 +1,6 @@
+prime (1.0-1) unstable; urgency=medium
+
+  * Initial release of the prime package.
+  * This version includes basic prime number checking.
+
+ -- Hedieh Karimitar <Hedieh_k@yahoo.com>  Sat, 18 Nov 2024 10:00:00 +0000

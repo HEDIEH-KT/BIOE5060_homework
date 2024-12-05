@@ -1,0 +1,9 @@
+CC=gcc
+CFLAGS=-Wall -g
+TARGET=prime
+
+$(TARGET): prime.c
+	$(CC) $(CFLAGS) -o $(TARGET) prime.c
+
+clean:
+	rm -f $(TARGET)
