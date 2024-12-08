@@ -1,7 +1,4 @@
-function matlabpong
-    disp('Game is running...');
-end
-function varargout = addpath,('C:\Path\To\Your\File');matlabpong(varargin)
+function varargout = matlabpong(varargin)
 % MATLABPONG MATLAB code for matlabpong.fig
 %      MATLABPONG, by itself, creates a new MATLABPONG or raises the existing
 %      singleton*.
@@ -35,9 +32,16 @@ gui_State = struct('gui_Name',       mfilename, ...
                    'gui_OutputFcn',  @matlabpong_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
-if nargin > 0 && ischar(varargin{1})
-    callbackName = varargin{1}; % Assign the first element of varargin to a variable
-    gui_State.gui_Callback = str2func(callbackName); % Convert the string to a function handle
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
 end
 
 % --- Executes just before matlabpong is made visible.
@@ -48,14 +52,15 @@ function matlabpong_OpeningFcn(hObject, ~, handles, varargin)
         
         % Try displaying an image or plot to test
         axes(handles.axCanvas);
-        imshow('example_image.png'); % or test plot
+        imshow('example_image.png'); % یا test نمودار با plot
         % plot(rand(10,1), rand(10,1));
     else
         disp('Error: axCanvas does not exist.');
     end
     
     guidata(hObject, handles);
-en
+end
+
 set(handles.plTitle, 'units', 'normalized', 'position', [0 0.85 1 0.15]);
 set(handles.axCanvas, 'xlim', [0,1], 'ylim', [0,1], 'xtick', [], 'ytick', [], ...
     'units', 'normalized', 'position', [0.02 0.02 0.96 0.8],'color', [0.9,0.75,0.8]);
